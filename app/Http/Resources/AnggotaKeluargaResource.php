@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class AnggotaKeluargaResource extends JsonResource
 {
@@ -23,7 +24,7 @@ class AnggotaKeluargaResource extends JsonResource
         return [
             'kepala_keluarga' => $kepala->nama_kepala,
             'nama' => $this->nama,
-            'tanggal_lahir' => $this->tanggal_lahir,
+            'tanggal_lahir' => $this->tanggal_lahir ? Carbon::parse($this->tanggal_lahir)->format('d-m-Y') : null,
             'kelompok_usia' => $this->kelompokUsia,
             'jenis_kelamin' => $jenis,
             'hubungan_ke_kk' => $this->hubungan_ke_kk

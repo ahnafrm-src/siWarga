@@ -27,8 +27,8 @@ class AnggotaKeluarga extends Model
             }
             $tanggallahir =  Carbon::parse($this->tanggal_lahir);
 
-            $usia = $tanggallahir->diffInYears(now());
-
+            $usiaAsli = $tanggallahir->diffInYears(now());
+            $usia = floor($usiaAsli);
 
             if($usia >= 60){
                $kelompok = "Lansia";
