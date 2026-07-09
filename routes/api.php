@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\KepalaKeluargaController;
 use App\Http\Controllers\Api\AnggotaKeluargaController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\ExportController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -24,5 +25,8 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('kepala-keluarga', KepalaKeluargaController::class);
         Route::apiResource('/kepala-keluarga.anggota', AnggotaKeluargaController::class)
             ->except(['index'])->parameters(['anggota' => 'anggota']);
+
+        Route::get('export-excel', [ExportController::class, 'excel']);
+        Route::get('export-pdf', [ExportController::class, 'pdf']);
     });
 });
